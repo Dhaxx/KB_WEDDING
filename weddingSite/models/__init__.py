@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from main.settings.development import SECRET_KEY
+from django.contrib import admin
 
 STATUS_CHOICES = (
     (0, 'PENDENTE'),
@@ -10,4 +11,6 @@ STATUS_CHOICES = (
     (2, 'NÃO IREI'),
 )
 
-from .guest import Guest
+from .table import Table, TableAdmin
+from .guest import Guest, GuestAdmin
+from .gift import Gift, GiftAdmin
