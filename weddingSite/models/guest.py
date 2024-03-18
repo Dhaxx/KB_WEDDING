@@ -5,7 +5,7 @@ from weddingSite.models import *
 
 class Guest(models.Model):
     name = models.CharField(max_length=100)
-    fk_table = models.ForeignKey('Table', on_delete=models.SET_NULL, blank=True, null=True, related_name='guests')
+    table = models.ForeignKey(Table, on_delete=models.SET_NULL, blank=True, null=True, related_name='guests')
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
     token = models.CharField(max_length=100, null=True, blank=True)
     hmac_digest = models.CharField(max_length=64, null=True, blank=True)
@@ -23,11 +23,12 @@ def generate_guest_token_and_hmac(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Guest)
 def created_gift_cart(sender, instance, created, **kwargs):
+    from .giftCart import GiftCart
     if created:
-        gift_cart = GiftCart.objects.create(owner=instance, total=0)
+        gift_cart = GiftCart.objects.create(guest=instance, total=0)
         instance.gift_cart = gift_cart
         instance.save()    
 
 class GuestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'status', 'fk_table', 'token',)
+    list_display = ('id', 'name', 'status', 'table', 'token',)
     exclude = ('hmac_digest','token',)

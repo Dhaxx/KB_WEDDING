@@ -10,8 +10,9 @@ class Table(models.Model):
         return self.name
 
     def clean(self):
-        if self.fk_guests.count() > 6:
-            raise ValidationError(_("A mesa não pode ter mais de 6 convidados."))
+        if self.id is not None:  # Check if the Table object has been saved
+            if self.fk_guests.count() > 6:
+                raise ValidationError('A table can only have 6 guests.')
         
 class GuestInline(admin.TabularInline):
     model = Table.fk_guests.through
@@ -21,7 +22,7 @@ class TableAdmin(admin.ModelAdmin):
         return obj.fk_guests.count()
     num_guests.short_description = 'Número de Convidados'
 
-    inlines = [GuestInline]
+    inlines = [GuestInline] if Table.fk_guests.through not in admin.site._registry else []
 
     list_display = ('id', 'name')
     exclude = 'fk_guests',
