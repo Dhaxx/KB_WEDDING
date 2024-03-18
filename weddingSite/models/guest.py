@@ -21,6 +21,12 @@ def generate_guest_token_and_hmac(sender, instance, **kwargs):
         key = bytes(SECRET_KEY, 'utf-8')
         instance.hmac_digest = hmac.new(key ,str(instance.token).encode('utf-8'), digestmod=hashlib.sha256).hexdigest()
 
+@receiver(post_save, sender=Guest)
+def created_gift_cart(sender, instance, created, **kwargs):
+    if created:
+        gift_cart = GiftCart.objects.create(owner=instance, total=0)
+        instance.gift_cart = gift_cart
+        instance.save()    
 
 class GuestAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'status', 'fk_table', 'token',)
