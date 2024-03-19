@@ -1,4 +1,5 @@
 from weddingSite.views import *
+from weddingSite.forms import LoginForm
 
 def login_view(request):
     if request.method == "POST":
