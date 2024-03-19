@@ -25,4 +25,5 @@ class TableAdmin(admin.ModelAdmin):
     inlines = [GuestInline] if Table.fk_guests.through not in admin.site._registry else []
 
     list_display = ('id', 'name')
+    list_display_links = ('id', 'name')
     exclude = 'fk_guests',

@@ -10,3 +10,4 @@ class GiftCart(models.Model):
     
 class GiftCartAdmin(admin.ModelAdmin):
     list_display = ('id', 'guest', 'total',)
+    list_display_links = ('id', 'guest',)

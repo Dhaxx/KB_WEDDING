@@ -31,4 +31,5 @@ def created_gift_cart(sender, instance, created, **kwargs):
 
 class GuestAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'status', 'table', 'token',)
+    list_display_links = ('id', 'name',)
     exclude = ('hmac_digest','token',)

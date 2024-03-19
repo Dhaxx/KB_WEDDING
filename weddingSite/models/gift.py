@@ -13,3 +13,4 @@ class Gift(models.Model):
     
 class GiftAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'price', 'status',)
+    list_display_links = ('id', 'name',)
