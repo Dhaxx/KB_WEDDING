@@ -1,0 +1,43 @@
+.container-fluid {
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    scrollbar-width: none;
+}
+
+.container-fluid::-webkit-scrollbar {
+    display: none;
+}
+
+.col-foto {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 60%;
+    background-color: red;
+}
+
+.col-foto img {
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
+}
+
+.col-login {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 40%;
+}
+
+.col-login form {
+    display: flex;
+}

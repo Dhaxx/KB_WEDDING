@@ -1,8 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
+{% block title %}| Login{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock %}
 {% block content %}
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-foto">
+            <img src="{% static 'imgs/KB_login_img.JPEG' %}" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 col-login row">
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
