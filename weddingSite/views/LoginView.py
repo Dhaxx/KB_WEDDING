@@ -9,9 +9,9 @@ def login_view(request):
             guest = Guest.objects.filter(token=token).first()
             if guest:
                 request.session['guest_id'] = guest.id
-                return redirect('index')
+                return redirect('home')
             else:
                 messages.error(request, 'Token Inválido')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login/login.html', {'form': form})

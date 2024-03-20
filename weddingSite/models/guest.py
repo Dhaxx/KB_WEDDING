@@ -25,9 +25,9 @@ def generate_guest_token_and_hmac(sender, instance, **kwargs):
 def created_gift_cart(sender, instance, created, **kwargs):
     from .giftCart import GiftCart
     if created:
-        gift_cart = GiftCart.objects.create(guest=instance, total=0)
-        instance.gift_cart = gift_cart
-        instance.save()    
+        gift_cart = GiftCart.objects.create(guest=instance)
+        gift_cart.guest = instance
+        gift_cart.save() 
 
 class GuestAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'status', 'table', 'token',)
