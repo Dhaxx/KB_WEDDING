@@ -1,19 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}| Login{% endblock %}
-{% block styles %}<link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap" rel="stylesheet">
+{% endblock %}
 {% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-foto">
-            <img src="{% static 'imgs/KB_login_img.JPEG' %}" alt="Image" class="img-fluid">
+            <!-- <img src="{% static 'imgs/KB_login_img.JPEG' %}" alt="Image" class="img-fluid"> -->
         </div>
-        <div class="col-md-6 col-login row">
-            <form method="POST" action="{% url 'login' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
+        <div class="col-md-6 col-login row flex-column">
+            <div class="title d-flex flex-column justify-content-center align-items-center">
+                <h1 class="text-center">Kaio & Beatriz</h1>
+                <h6 class="text-center">Faça o login para descobrir todos os detalhes especiais do nosso grande dia!</h6>
+            </div>
+            <div class="form-container d-flex flex-column justify-content-center align-items-center">
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
