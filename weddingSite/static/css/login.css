@@ -115,3 +115,6 @@
     color: rgb(0, 0, 0);
 }
 
+.alert-dange {
+    z-index: 100;
+}

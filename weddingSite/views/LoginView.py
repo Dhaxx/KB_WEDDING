@@ -11,7 +11,7 @@ def login_view(request):
                 request.session['guest_id'] = guest.id
                 return redirect('home')
             else:
-                messages.error(request, 'Token Inválido')
+                messages.error(request, 'Token Inválido! Tente Novamente.')
     else:
         form = LoginForm()
     return render(request, 'login/login.html', {'form': form})
