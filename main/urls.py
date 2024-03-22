@@ -22,6 +22,6 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('weddingSite.urls.HomeUrls')),
     path('login/', include('weddingSite.urls.LoginUrls')),
+    path('', include('weddingSite.urls.HomeUrls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
