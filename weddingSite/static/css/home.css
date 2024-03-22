@@ -1,0 +1,28 @@
+.title-bar {
+    font-family: 'Beau Rivage';
+    color: #92A8D1;
+    height: 30%;
+    padding-bottom: 0;
+}
+
+.title-bar h1 {
+    font-size: 4em;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-expand-lg {
+    padding-top: 0;
+}
+
+.navbar-expand-lg a {
+    padding-top: 0;
+    color: #7c8795;
+}
+
+.imagem-central {
+    background-image: url('../imgs/Paisagem-teste.jpg');
+    background-size: cover;
+    height: 70vh;
+    color: thistle;
+}

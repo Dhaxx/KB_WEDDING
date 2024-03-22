@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container header">
+    <nav class="navbar navbar-light justify-content-center title-bar">
+        <h1>Kaio & Beatriz</h1>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-center">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+</div>
+<div class="position-relative overflow-hidden p-3 p-md-5 text-center imagem-central">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-normal">Punny headline</h1>
+        <p class="lead fw-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
+        
+        <!-- Elemento para exibir a contagem regressiva -->
+        <div id="demo"></div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    // Defina a data e hora para a qual você deseja contar
+    var countDownDate = new Date("Nov 15, 2024 17:00:00").getTime();
+
+    // Atualize a contagem regressiva a cada 1 segundo
+    var countdownfunction = setInterval(function() {
+
+      // Obtenha a data e hora atuais
+      var now = new Date().getTime();
+
+      // Encontre a distância entre agora e a data da contagem regressiva
+      var distance = countDownDate - now;
+
+      // Cálculos de tempo para dias, horas, minutos e segundos
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Exiba o resultado no elemento com id="demo"
+      document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      // Se a contagem regressiva terminar, escreva algum texto 
+      if (distance < 0) {
+        clearInterval(countdownfunction);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+</script>
+{% endblock %}
