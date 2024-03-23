@@ -3,12 +3,8 @@
     color: #92A8D1;
     height: 30%;
     padding-bottom: 0;
-}
-
-.title-bar h1 {
     font-size: 4em;
     margin: 0;
-    padding: 0;
 }
 
 .navbar-expand-lg {
@@ -21,8 +17,20 @@
 }
 
 .imagem-central {
-    background-image: url('../imgs/Paisagem-teste.jpg');
+    background-image: url('../imgs/KB_main_img.JPEG');
     background-size: cover;
+    background-position-x: 28vw;
+    background-position-y: 200vh;
     height: 70vh;
-    color: #ffffff;
+}
+
+.container-timer {
+    width: 100vw;
+}
+
+#timer {
+    color: #92A8D1;
+    font-size: 6em;
+    padding: 0;
+    width: 100vw;
 }
