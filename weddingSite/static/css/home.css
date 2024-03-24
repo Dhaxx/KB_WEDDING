@@ -29,8 +29,27 @@
 }
 
 #timer {
-    color: #92A8D1;
-    font-size: 6em;
+    color: #f7f7f7;
+    font-size: 2em;
     padding: 0;
     width: 100vw;
+    background: #A8C1E0;
+    margin-bottom: 20px;
+}
+
+.container-maps {
+    width: -webkit-fill-available;
+}
+
+.container-localizacao h3 {
+    color: #92A8D1;
+    font-size: 2em;
+}
+
+.localizacao {
+    padding-left: 5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: 700;
+    color: #92A8D1;
 }

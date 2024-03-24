@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block styles %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +20,7 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#localizacao">Localização</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Disabled</a>
@@ -33,7 +34,27 @@
 <div class="row text-center container-timer">
     <div id="timer"></div>
 </div>
-
+<div class="container container-localizacao" id="localizacao">
+    <div class="row g-0 bg-body-secondary position-relative">
+        <h1 class="titulo">Localização</h1>
+        <div class="col-md-6 mb-md-0 p-md-4">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/13/79/5d/d5/fachada-do-restaurante.jpg" alt="Description of image" class="img-fluid">
+        </div>
+        <div class="col-md-6 mb-md-0 p-md-4">
+            <h3 class="mt-5 display-4">Estância Lago Azul</h3>
+            <span class="text-localizacao">Queridos amigos e familiares,
+                Estamos encantados em compartilhar o local para o nosso casamento. Este lugar é muito mais do que apenas uma paisagem bonita - é onde nossas histórias se entrelaçam, onde risos foram compartilhados e onde promessas
+                de amor foram feitas. Mal podemos esperar para celebrar este momento especial com vocês neste cenário tão significativo para nós.
+                <br>
+            </span>
+            <p class="localizacao">Av. Roberto Mário Perosa, s/n - Agua Sumida, Urupês - SP, 15850-000</p>
+    </div>
+    <div class="row g-0 bg-body-secondary position-relative">
+        <div class="col-md-12 mb-md-0 p-md-4 container-maps">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2211.655098507378!2d-49.29993029586487!3d-21.21019920927012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bc2bc1607db457%3A0xb3ef91d6950ae848!2sEst%C3%A2ncia%20Lago%20Azul!5e0!3m2!1spt-BR!2sbr!4v1711249116666!5m2!1spt-BR!2sbr" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
 {% endblock %}
 {% block scripts %}
 <script>
