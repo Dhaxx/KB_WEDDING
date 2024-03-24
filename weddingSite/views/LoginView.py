@@ -6,10 +6,14 @@ def login_view(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             token = form.cleaned_data.get('token')
-            guest = Guest.objects.filter(token=token).first()
-            if guest:
-                request.session['guest_id'] = guest.id
-                return redirect('home')
+            group_guest = GroupGuest.objects.filter(token=token).first()
+            if group_guest:
+                guest = group_guest.members.first()
+                if guest:
+                    request.session['guest_id'] = guest.id
+                    return redirect('home')
+                else:
+                    messages.error(request, 'Grupo sem convidados! Tente Novamente.')
             else:
                 messages.error(request, 'Token Inválido! Tente Novamente.')
     else:

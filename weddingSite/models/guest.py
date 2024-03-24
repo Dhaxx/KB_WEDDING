@@ -1,35 +1,28 @@
-import secrets
-import hmac
-import hashlib
 from weddingSite.models import *
 
 class Guest(models.Model):
     name = models.CharField(max_length=100)
     table = models.ForeignKey(Table, on_delete=models.SET_NULL, blank=True, null=True, related_name='guests')
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
-    token = models.CharField(max_length=100, null=True, blank=True)
-    hmac_digest = models.CharField(max_length=64, null=True, blank=True)
+    group = models.ForeignKey(GroupGuest, on_delete=models.SET_NULL, blank=True, null=True, related_name='members')
 
     def __str__(self):
         return self.name
     
-@receiver(pre_save, sender=Guest)
-def generate_guest_token_and_hmac(sender, instance, **kwargs):
+@receiver(pre_save, sender=GroupGuest)
+def generate_group_guest_token_and_hmac(sender, instance, **kwargs):
     if not instance.token:
         instance.token = secrets.token_urlsafe(8)
-    if not instance.hmac_digest:
-        key = bytes(SECRET_KEY, 'utf-8')
-        instance.hmac_digest = hmac.new(key ,str(instance.token).encode('utf-8'), digestmod=hashlib.sha256).hexdigest()
+    key = bytes(SECRET_KEY, 'utf-8')
+    instance.hmac_digest = hmac.new(key ,str(instance.token).encode('utf-8'), digestmod=hashlib.sha256).hexdigest()
 
 @receiver(post_save, sender=Guest)
-def created_gift_cart(sender, instance, created, **kwargs):
-    from .giftCart import GiftCart
-    if created:
-        gift_cart = GiftCart.objects.create(guest=instance)
-        gift_cart.guest = instance
-        gift_cart.save() 
+def create_group_guest_for_single_guest(sender, instance, created, **kwargs):
+    if created and not instance.group:
+        group_guest = GroupGuest.objects.create(name=instance.name)
+        instance.group = group_guest
+        instance.save()
 
 class GuestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'status', 'table', 'token',)
+    list_display = ('id', 'name', 'status', 'table', 'group',)
     list_display_links = ('id', 'name',)
-    exclude = ('hmac_digest','token',)
