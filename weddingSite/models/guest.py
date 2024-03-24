@@ -19,9 +19,11 @@ def generate_group_guest_token_and_hmac(sender, instance, **kwargs):
 @receiver(post_save, sender=Guest)
 def create_group_guest_for_single_guest(sender, instance, created, **kwargs):
     if created and not instance.group:
-        group_guest = GroupGuest.objects.create(name=instance.name)
+        group_guest = GroupGuest.objects.create(name=f'Família {instance.name}')
         instance.group = group_guest
         instance.save()
+        gift_cart = GiftCart.objects.create(guestGroup=group_guest)
+        gift_cart.save()
 
 class GuestAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'status', 'table', 'group',)
