@@ -16,6 +16,6 @@ STATUS_CHOICES = (
 
 from .table import Table, TableAdmin
 from .gift import Gift, GiftAdmin
-from .guestGroup import GroupGuest
+from .guestGroup import GroupGuest, GroupGuestAdmin
 from .giftCart import GiftCart, GiftCartAdmin
 from .guest import Guest, GuestAdmin

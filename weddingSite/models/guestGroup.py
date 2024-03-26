@@ -7,3 +7,7 @@ class GroupGuest(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+    
+class GroupGuestAdmin(admin.ModelAdmin):
+    list_display = ('name', 'token',)
+    list_display_links = ('name',)
