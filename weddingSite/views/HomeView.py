@@ -8,7 +8,6 @@ def home_view(request):
     return render(request, 'home/home.html')
 
 def confirm_presence(request):
-    print(request.POST)  # Imprime o POST da requisição
     if 'group_guest_id' in request.session and 'is_attending' in request.POST:
         group_guest_id = request.session['group_guest_id']
         is_attending = request.POST['is_attending'] == 'true'

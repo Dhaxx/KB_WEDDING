@@ -16,12 +16,21 @@
     color: #7c8795;
 }
 
+.container-data {
+    background-color: #92A8D1;
+    color: #f7f7f7;
+    font-size: 2em;
+    font-weight: 200;
+    padding: 0;
+    margin: 0;
+}
+
 .imagem-central {
     background-image: url('../imgs/KB_main_img.JPEG');
     background-size: cover;
     background-position-x: 28vw;
     background-position-y: 200vh;
-    height: 70vh;
+    height: 85vh;
 }
 
 .container-timer {
