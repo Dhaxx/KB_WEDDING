@@ -3,7 +3,6 @@ from weddingSite.models import *
 class Guest(models.Model):
     name = models.CharField(max_length=100)
     table = models.ForeignKey(Table, on_delete=models.SET_NULL, blank=True, null=True, related_name='guests')
-    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
     group = models.ForeignKey(GroupGuest, on_delete=models.SET_NULL, blank=True, null=True, related_name='members')
 
     def __str__(self):
@@ -26,5 +25,5 @@ def create_group_guest_for_single_guest(sender, instance, created, **kwargs):
         gift_cart.save()
 
 class GuestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'status', 'table', 'group',)
-    list_display_links = ('id', 'name',)
+    list_display = ('id', 'name', 'table', 'group',)
+    list_display_links = ('id', 'name', 'group',)
