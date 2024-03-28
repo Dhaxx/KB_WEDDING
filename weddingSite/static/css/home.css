@@ -22,7 +22,7 @@
     font-size: 2em;
     font-weight: 200;
     padding: 0;
-    margin: 0;
+    margin: 0 0 5vh 0;
 }
 
 .imagem-central {
@@ -31,6 +31,30 @@
     background-position-x: 28vw;
     background-position-y: 200vh;
     height: 85vh;
+}
+
+#convite {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+#convite .mensagem {
+    font-size: 1.5em;
+    color: #92A8D1;
+    font-weight: 300;
+    font-style: italic;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+#convite .pais {
+    font-family: serif;
+    margin-bottom: 3vh;
+}
+
+#convite .noivos {
+    color: #6d92d8;
+    ;
 }
 
 .container-timer {

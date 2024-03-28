@@ -3,10 +3,11 @@ body {
     height: 100vh;
     overflow-x: hidden;
     background-color: #E9ECEF;
+    font-family: serif;
 }
 
 .titulo {
-    color: #92A8D1;
+    color: #6d92d8;
     font-size: 4em;
     margin: 0;
     border-left: 5px solid #92A8D1;
