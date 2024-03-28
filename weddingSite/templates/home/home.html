@@ -77,12 +77,12 @@
         </div>
         <div class="col-md-6 mb-md-0 p-md-4">
             <h3 class="mt-5 display-4">Estância Lago Azul</h3>
-            <span class="text-localizacao">Queridos amigos e familiares,
+            <span class="text-localizacao fs-5 text">Queridos amigos e familiares,
                 Estamos encantados em compartilhar o local para o nosso casamento. Este lugar é muito mais do que apenas uma paisagem bonita - é onde nossas histórias se entrelaçam, onde risos foram compartilhados e onde promessas
                 de amor foram feitas. Mal podemos esperar para celebrar este momento especial com vocês neste cenário tão significativo para nós.
                 <br>
             </span>
-            <p class="localizacao">Av. Roberto Mário Perosa, s/n - Agua Sumida, Urupês - SP, 15850-000</p>
+            <p class="localizacao fs-5 text">Av. Roberto Mário Perosa, s/n - Agua Sumida, Urupês - SP, 15850-000</p>
         </div>
     </div>
     <div class="row g-0 bg-body-secondary position-relative">
@@ -91,7 +91,30 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="container" id="presentes">
+    <div class="row g-0 bg-body-secondary position-relative">
+        <h1 class="titulo">Lista de presentes</h1>
+        <small class="text-body-secondary fs-5 text">Para aqueles que desejam nos presentear nesta ocasião especial, 
+        criamos uma lista de presentes com carinho. Sua presença é o maior presente que poderíamos receber, 
+        mas caso deseje nos presentear de outra forma, ficaremos profundamente gratos. Obrigado por 
+        fazer parte deste momento único em nossas vidas.</small>
+        <div class="d-flex flex-row flex-nowrap overflow-auto">
+            {% for gift in gifts %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{ gift.image.url }}" class="card-img-top" alt="{{ gift.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ gift.name }}</h5>
+                    <p class="card-text">{{ gift.description }}</p>
+                </div>
+                <div class="row card-body justify-content text-center">
+                    <a href="{{ gift.link }}" class="btn btn-primary">Dar presente</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="confirmacao">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">

@@ -1,8 +1,8 @@
+from django.shortcuts import redirect
 from weddingSite.views import *
 from weddingSite.forms import LoginForm
 
 def login_view(request):
-    show_modal = False
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -11,8 +11,10 @@ def login_view(request):
             if group_guest:
                 request.session['group_guest_id'] = group_guest.id
                 if group_guest.status in [0, 2]:
-                    show_modal = True
-                return render(request, 'home/home.html', {'show_modal': show_modal, 'group_guest': group_guest})
+                    request.session['show_modal'] = True
+                else:
+                    request.session['show_modal'] = False
+                return redirect('home')  # substitua 'home' pelo nome da sua URL de destino
             else:
                 messages.error(request, 'Token Inválido! Tente Novamente.')
     else:
