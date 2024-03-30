@@ -100,21 +100,34 @@
         fazer parte deste momento único em nossas vidas.</small>
         <div class="d-flex flex-row flex-nowrap overflow-auto">
             {% for gift in gifts %}
-            <div class="card" style="width: 18rem;">
-                <img src="{{ gift.image.url }}" class="card-img-top" alt="{{ gift.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ gift.name }}</h5>
-                    <p class="card-text">{{ gift.description }}</p>
+            <div class="card mb-3" id="card" style="width: 540px; margin-right: 5px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ gift.image.url }}" class="img-fluid rounded-start" alt="{{ gift.name }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title text-start">{{ gift.name }}</h5>
+                            <p class="card-text">{{ gift.description|slice:":100" }}...</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="row card-body justify-content text-center">
-                    <a href="{{ gift.link }}" class="btn btn-primary">Dar presente</a>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#giftModal"
+                            data-gift-name="{{ gift.name }}"
+                            data-gift-description="{{ gift.description }}"
+                            data-gift-image="{{ gift.image.url }}"
+                            data-gift-link="{{ gift.link }}"
+                            onclick="updateModal(this)">
+                        Detalhes
+                    </button>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="confirmacao">
+<div class="modal fade" id="confirmacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -135,6 +148,24 @@
                 <button type="button" class="btn btn-success" onclick="confirmPresence(true)">Eu irei</button>
             </div>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="giftModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <img src="" class="img-fluid" alt="Imagem do presente">
+            <p class="fs-5">Descrição do presente</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="{{ gift.link }}" class="btn btn-primary" target="_blank">Save changes</a>
+        </div>
+      </div>
     </div>
 </div>
 {% endblock %}
@@ -175,8 +206,7 @@
         document.getElementById("timer").innerHTML = "O Grande Dia Chegou!";
       }
     }, 1000);
-</script>
-<script>
+
     function confirmPresence(isAttending) {
         $.ajax({
             url: '{% url "confirm_presence" %}',
@@ -189,6 +219,19 @@
                 $('#myModal').modal('hide');
             }
         });
+    }
+
+    function updateModal(button) {
+        var name = button.getAttribute('data-gift-name');
+        var description = button.getAttribute('data-gift-description');
+        var image = button.getAttribute('data-gift-image');
+        var link = button.getAttribute('data-gift-link');
+    
+        var modal = document.getElementById('giftModal');
+        modal.querySelector('.modal-title').textContent = name;
+        modal.querySelector('.modal-body p').textContent = description;
+        modal.querySelector('.modal-body img').src = image;
+        modal.querySelector('.modal-footer a').href = link;
     }
 </script>
 {% endblock %}
