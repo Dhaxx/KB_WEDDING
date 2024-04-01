@@ -3,7 +3,7 @@ from weddingSite.models import *
 class Gift(models.Model):
     image = models.ImageField(upload_to='gifts', null=False, blank=False)
     name = models.CharField(max_length=250)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, max_length=250)
     link = models.CharField(max_length=255, null=True, blank=True)
     status = models.BooleanField(default=False)
 
