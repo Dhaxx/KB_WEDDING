@@ -17,13 +17,13 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#localizacao">Localização</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Disabled</a>
+                    <a class="nav-link" href="#presentes">Lista de Presentes</a>
                 </li>
             </ul>
         </div>
@@ -31,15 +31,15 @@
 </div>
 <div class="position-relative overflow-hidden p-3 p-md-5 text-center imagem-central">
 </div>
-<!-- <div class="row text-center container-timer">
-    <div id="timer"></div>
-</div> -->
 <div class="row text-center container-data">
     <span>15 de Novembro de 2024</span>
 </div>
+<div class="row text-center container-timer">
+    <div id="timer"></div>
+</div>
 <div class="container container-sobre" id="convite">
     <div class="row g-0 bg-body-secondary position-relative">
-        <h3 class="text-center mensagem">"Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do SENHOR fez isso..."(Isaías 41:20)</h3>
+        <h3 class="text-center mensagem">"Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do SENHOR fez isso..."<br>(Isaías 41:20)</h3>
     </div>
     <div class="row text-center pais">
         <div class="col-md-4 pais_noivo">
@@ -56,7 +56,7 @@
                 <h5>Eliandra Cristina de Oliveira</h5>
             </div>
             <div class="row">
-                <h5>Alex Ferreira</h5>
+                <h5>Alex Ferreira da Silva</h5>
             </div>
         </div>
     </div>
@@ -100,27 +100,20 @@
         fazer parte deste momento único em nossas vidas.</small>
         <div class="d-flex flex-row flex-nowrap overflow-auto">
             {% for gift in gifts %}
-            <div class="card mb-3" id="card" style="width: 540px; margin-right: 5px;">
+            <div class="card mb-3" id="card" style="width: 540px; margin-right: 20px;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="{{ gift.image.url }}" class="img-fluid rounded-start" alt="{{ gift.name }}">
                     </div>
                     <div class="col-md-8">
-                        <div class="card-body">
+                        <div class="card-body descricao">
                             <h5 class="card-title text-start">{{ gift.name }}</h5>
                             <p class="card-text">{{ gift.description|slice:":100" }}...</p>
                         </div>
                     </div>
                 </div>
-                <div class="row card-body justify-content text-center">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#giftModal"
-                            data-gift-name="{{ gift.name }}"
-                            data-gift-description="{{ gift.description }}"
-                            data-gift-image="{{ gift.image.url }}"
-                            data-gift-link="{{ gift.link }}"
-                            onclick="updateModal(this)">
-                        Detalhes
-                    </button>
+                <div class="row card-body justify-content text-center comprar">
+                    <a href="{{ gift.link }}" target="_blank" class="btn btn-primary">Dar Presente</a>
                 </div>
             </div>
             {% endfor %}
@@ -148,24 +141,6 @@
                 <button type="button" class="btn btn-success" onclick="confirmPresence(true)">Eu irei</button>
             </div>
         </div>
-    </div>
-</div>
-<div class="modal fade" id="giftModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <img src="" class="img-fluid" alt="Imagem do presente">
-            <p class="fs-5">Descrição do presente</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="{{ gift.link }}" class="btn btn-primary" target="_blank">Save changes</a>
-        </div>
-      </div>
     </div>
 </div>
 {% endblock %}
@@ -197,7 +172,7 @@
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       // Exiba o resultado no elemento com id="timer"
-      document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+      document.getElementById("timer").innerHTML = days + " dias " + hours + "h "
       + minutes + "m " + seconds + "s ";
 
       // Se a contagem regressiva terminar, escreva algum texto 
@@ -219,19 +194,6 @@
                 $('#myModal').modal('hide');
             }
         });
-    }
-
-    function updateModal(button) {
-        var name = button.getAttribute('data-gift-name');
-        var description = button.getAttribute('data-gift-description');
-        var image = button.getAttribute('data-gift-image');
-        var link = button.getAttribute('data-gift-link');
-    
-        var modal = document.getElementById('giftModal');
-        modal.querySelector('.modal-title').textContent = name;
-        modal.querySelector('.modal-body p').textContent = description;
-        modal.querySelector('.modal-body img').src = image;
-        modal.querySelector('.modal-footer a').href = link;
     }
 </script>
 {% endblock %}
