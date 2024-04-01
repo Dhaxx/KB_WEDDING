@@ -15,6 +15,7 @@ def home_view(request):
     show_modal = request.session.get('show_modal', False) and group_guest.status in [0, 2] 
 
     return render(request, 'home/home.html', {'gifts': gifts, 'gift_cart': gift_cart, 'show_modal': show_modal, 'group_guest': group_guest})  
+
 def confirm_presence(request):
     if 'group_guest_id' in request.session and 'is_attending' in request.POST:
         group_guest_id = request.session['group_guest_id']
