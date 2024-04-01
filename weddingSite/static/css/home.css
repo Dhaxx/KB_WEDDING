@@ -44,8 +44,9 @@
 .imagem-central {
     background-image: url('../imgs/KB_main_img.JPEG');
     background-size: cover;
-    background-position-x: 28vw;
-    background-position-y: 200vh;
+    background-repeat: no-repeat;
+    background-position-x: 0;
+    background-position-y: -50vh;
     height: 85vh;
 }
 

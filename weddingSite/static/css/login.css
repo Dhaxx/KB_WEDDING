@@ -121,3 +121,7 @@
 .alert-dange {
     z-index: 100;
 }
+
+@media (max-width: 600px) {
+
+}
