@@ -100,19 +100,13 @@
         fazer parte deste momento único em nossas vidas.</small>
         <div class="d-flex flex-row flex-nowrap overflow-auto">
             {% for gift in gifts %}
-            <div class="card mb-3" id="card" style="width: 540px; margin-right: 20px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="{{ gift.image.url }}" class="img-fluid rounded-start" alt="{{ gift.name }}">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body descricao">
-                            <h5 class="card-title text-start">{{ gift.name }}</h5>
-                            <p class="card-text">{{ gift.description|slice:":100" }}...</p>
-                        </div>
-                    </div>
+            <div class="card" style="width: 18rem;">
+                <img src="{{ gift.image.url }}" class="card-img-top" alt="{{ gift.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ gift.name }}</h5>
+                    <p class="card-text">{{ gift.description|slice:":100" }}...</p>
                 </div>
-                <div class="row card-body justify-content text-center comprar">
+                <div class="container comprar" style="padding: 10px;">
                     <a href="{{ gift.link }}" target="_blank" class="btn btn-primary">Dar Presente</a>
                 </div>
             </div>
