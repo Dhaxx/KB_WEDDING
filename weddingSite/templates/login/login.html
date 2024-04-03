@@ -9,11 +9,8 @@
 {% endblock %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 col-foto">
-            <img src="{% static 'imgs/KB_login_img.JPEG' %}" alt="Image" class="img-fluid">
-        </div>
-        <div class="col-md-6 col-login row flex-column">
+    <div class="row flex-column-reverse flex-md-row">
+        <div class="col-md-6 col-sm-6 col-login row flex-column">
             <div class="title d-flex flex-column justify-content-center align-items-center">
                 <h1 class="text-center">Kaio & Beatriz</h1>
                 <h6 class="text-center">Faça o login para descobrir todos os detalhes especiais do nosso grande dia!</h6>
@@ -33,6 +30,10 @@
                     </div>
                     {% endif %}
                 </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-foto">
+            <img src="{% static 'imgs/KB_login_img.JPEG' %}" alt="Image" class="img-fluid">
         </div>
     </div>
 </div>
