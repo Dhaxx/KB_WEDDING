@@ -158,7 +158,15 @@
 
 @media (max-width: 765px) {
     #cabecalho .navbar-nav {
-        display: flex;
-        flex-direction: row;
+        justify-content: center;
+    }
+
+    #cabecalho .navbar-nav li {
+        margin-left: 10px;
+        text-wrap: nowrap;
+    }
+
+    .imagem-central {
+        background-position-y: 0;
     }
 }
