@@ -96,7 +96,7 @@
         fazer parte deste momento único em nossas vidas.</small>
         <div class="d-flex flex-row flex-nowrap overflow-auto">
             {% for gift in gifts %}
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="min-width: 200px; max-width: 300px; flex-grow: 1;">
                 <img src="{{ gift.image.url }}" class="card-img-top" alt="{{ gift.name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ gift.name }}</h5>
