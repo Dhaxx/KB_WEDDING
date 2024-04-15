@@ -34,7 +34,7 @@
     display: flex;
     align-items: center;
     background-color: rgb(255, 255, 255);
-    background-image: url(../imgs/background.jpg);
+    background-image: url(../imgs/background_widescreen.jpg);
     background-size: 147%;
     background-position-y: 50vh;
     background-position-x: -6vw;
@@ -141,10 +141,11 @@
     }
 
     .col-login {
+        background-image: url(../imgs/background_mobile.jpg);
         width: 100%;
         height: 100%;
-        background-size: 152%;
-        background-position-y: 49vh;
-        background-position-x: -17vw;
+        background-size: cover;
+        background-position-y: 0;
+        background-position-x: 0;
     }
 }
