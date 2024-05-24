@@ -156,6 +156,28 @@
     border-color: #4571c4;
 }
 
+footer {
+    height: 100px;
+    background-color: #5b5b5b;
+    margin-top: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .container {
+    justify-content: center;
+    color: #ffffff;
+}
+
+.navbar .container a {
+    color: #5e94fa;
+}
+
+.navbar .container a:hover {
+    color: #0d6efd;
+}
+
 @media (max-width: 765px) {
     #cabecalho .navbar-nav {
         justify-content: center;
