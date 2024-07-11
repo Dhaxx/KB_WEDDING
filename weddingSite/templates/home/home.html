@@ -69,7 +69,7 @@
     <div class="row g-0 bg-body-secondary position-relative">
         <h1 class="titulo">Localização</h1>
         <div class="col-md-6 mb-md-0 p-md-4">
-            <img src="https://media-cdn.tripadvisor.com/media/photo-s/13/79/5d/d5/fachada-do-restaurante.jpg" alt="Description of image" class="img-fluid">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/13/79/5d/d5/fachada-do-restaurante.jpg" alt="Frente do Salão Lago Azul" class="img-fluid">
         </div>
         <div class="col-md-6 mb-md-0 p-md-4">
             <h3 class="mt-5 display-4">Estância Lago Azul</h3>
@@ -94,7 +94,7 @@
         criamos uma lista de presentes com carinho. Sua presença é o maior presente que poderíamos receber, 
         mas caso deseje nos presentear de outra forma, ficaremos profundamente gratos. Obrigado por 
         fazer parte deste momento único em nossas vidas.</small>
-        <div class="d-flex flex-row flex-nowrap overflow-auto">
+        <div class="d-flex flex-row flex-nowrap overflow-auto" style="margin-bottom: 5vh;">
             {% for gift in gifts %}
             <div class="card" style="min-width: 200px; max-width: 300px; flex-grow: 1;">
                 <img src="{{ gift.image.url }}" class="card-img-top" alt="{{ gift.name }}">
@@ -107,6 +107,39 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+        <small class="text-body-secondary fs-5 text">Para aqueles que preferem nos presentear com uma contribuição em dinheiro, disponibilizamos a opção de transferência via Pix. 
+            Sua generosidade nos ajudará a começar esta nova etapa de nossas vidas com ainda mais alegria e gratidão.</small>
+        <div class="row g-0 bg-body-secondary position-relative" id="container-pix">
+            <div class="col-md-5 mb-md-0 p-md-4" id="info-pix">
+                <p class="text-body-secondary fs-5 text"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="#6d92d8" class="bi bi-key-fill" viewBox="0 0 16 16">
+                    <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                  </svg>0d21a206-705f-49d6-aed5-cf6facc2cda7
+                </p>
+                <p class="text-body-secondary fs-5 text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="#6d92d8" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    </svg>Kaio Pablo Martins
+                </p>
+                <p class="text-body-secondary fs-5 text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="#6d92d8" class="bi bi-bank2" viewBox="0 0 16 16">
+                        <path d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916zM12.375 6v7h-1.25V6zm-2.5 0v7h-1.25V6zm-2.5 0v7h-1.25V6zm-2.5 0v7h-1.25V6zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2M.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1z"/>
+                    </svg>Nubank
+                </p>
+            </div>
+            <div class="col-md-4 mb-md-0 p-md-4">
+                <img src="{% static 'imgs/QRPIX.jpg' %}" alt="Pix" class="img-fluid">
+                <button onclick="copiarLinkQRCode()" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
+                        <path d="M2 2h2v2H2z"/>
+                        <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
+                        <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
+                        <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
+                        <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
+                      </svg>
+                    Copiar Link do QR Code
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -198,6 +231,16 @@
                 $('#myModal').modal('hide');
             }
         });
+    }
+
+    function copiarLinkQRCode() {
+        var qrCodigo = document.createElement("input");
+        qrCodigo.value = "00020126720014BR.GOV.BCB.PIX0111145478826730235Preparação de Deus para o Casamento5204000053039865802BR5918Kaio Pablo Martins6009SAO PAULO621405105HiUujtrDK6304B681";
+        document.body.appendChild(qrCodigo);
+        qrCodigo.select();
+        document.execCommand("copy");
+        document.body.removeChild(qrCodigo);
+        alert("Link do QR Code copiado para a área de transferência!");
     }
 </script>
 {% endblock %}
