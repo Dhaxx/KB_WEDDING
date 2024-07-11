@@ -218,6 +218,10 @@ footer {
     border-color: #4571c4;
 }
 
+.display-4 {
+    color: #5b5b5b;
+}
+
 @media (max-width: 765px) {
     #cabecalho .navbar-nav {
         justify-content: center;
@@ -230,5 +234,21 @@ footer {
 
     .imagem-central {
         background-position-y: 0;
+    }
+
+    #container-pix {
+        flex-direction: column-reverse;
+    }
+
+    #container-pix .btn {
+        margin-bottom: 10%;
+    }
+
+    #container-pix #info-pix p {
+        font-size: 1rem!important;
+    }
+
+    .txt-pix {
+        margin-bottom: 5vh;
     }
 }
