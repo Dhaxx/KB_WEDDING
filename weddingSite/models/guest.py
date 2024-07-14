@@ -25,5 +25,10 @@ def create_group_guest_for_single_guest(sender, instance, created, **kwargs):
         gift_cart.save()
 
 class GuestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'table', 'group',)
+    list_display = ('id', 'name', 'table', 'group', 'type')
     list_display_links = ('id', 'name', 'group',)
+
+    def type(self, obj):
+        type_description = {0: 'Convidado', 1: 'Padrinho'}
+        # Retorna a descrição baseada no valor de 'type' do grupo, se existir
+        return type_description.get(obj.group.type, None) if obj.group else None

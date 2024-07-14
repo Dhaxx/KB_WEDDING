@@ -14,6 +14,11 @@ STATUS_CHOICES = (
     (2, 'NÃO IREI'),
 )
 
+GROUP_TYPE = (
+    (0, 'CONVIDADO'),
+    (1, 'PADRINHOS'),
+)
+
 from .table import Table, TableAdmin
 from .gift import Gift, GiftAdmin
 from .guestGroup import GroupGuest, GroupGuestAdmin
