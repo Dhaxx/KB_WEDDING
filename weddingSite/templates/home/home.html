@@ -90,24 +90,28 @@
 <div class="container" id="presentes">
     <div class="row g-0 bg-body-secondary position-relative">
         <h1 class="titulo">Lista de presentes</h1>
-        <small class="text-body-secondary fs-5 text">Para aqueles que desejam nos presentear nesta ocasião especial, 
-        criamos uma lista de presentes com carinho. Sua presença é o maior presente que poderíamos receber, 
-        mas caso deseje nos presentear de outra forma, ficaremos profundamente gratos. Obrigado por 
-        fazer parte deste momento único em nossas vidas.</small>
-        <div class="d-flex flex-row flex-nowrap overflow-auto" style="margin-bottom: 5vh;">
-            {% for gift in gifts %}
-            <div class="card" style="min-width: 200px; max-width: 300px; flex-grow: 1;">
-                <img src="{{ gift.image.url }}" class="card-img-top" alt="{{ gift.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ gift.name }}</h5>
-                    <p class="card-text">{{ gift.description|slice:":100" }}...</p>
+        {% if not gift_choosed %}
+            <small class="text-body-secondary fs-5 text">Para aqueles que desejam nos presentear nesta ocasião especial, 
+            criamos uma lista de presentes com carinho. Sua presença é o maior presente que poderíamos receber, 
+            mas caso deseje nos presentear de outra forma, ficaremos profundamente gratos. Obrigado por 
+            fazer parte deste momento único em nossas vidas.</small>
+            <div class="d-flex flex-row flex-nowrap overflow-auto" style="margin-bottom: 5vh;">
+                {% for gift in gifts %}
+                <div class="card" style="min-width: 200px; max-width: 300px; flex-grow: 1;">
+                    <img src="{{ gift.image.url }}" class="card-img-top" alt="{{ gift.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ gift.name }}</h5>
+                        <p class="card-text">{{ gift.description|slice:":100" }}...</p>
+                    </div>
+                    <div class="container comprar" style="padding: 10px;">
+                        <a href="{{ gift.link }}" target="_blank" class="btn btn-primary">Dar Presente</a>
+                    </div>
                 </div>
-                <div class="container comprar" style="padding: 10px;">
-                    <a href="{{ gift.link }}" target="_blank" class="btn btn-primary">Dar Presente</a>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
+        {% else %}
+            <small class="text-body-secondary fs-5 text">Já tem presente.</small>
+        {% endif %}
         <small class="text-body-secondary fs-5 txt-pix">Se preferir nos presentear com uma contribuição em dinheiro, disponibilizamos a opção de transferência via Pix. 
             Sua generosidade será uma grande ajuda para iniciarmos esta nova etapa com ainda mais alegria e gratidão.</small>
         <div class="row g-0 bg-body-secondary position-relative" id="container-pix">
