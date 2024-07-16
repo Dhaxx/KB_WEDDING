@@ -110,7 +110,13 @@
                 {% endfor %}
             </div>
         {% else %}
-            <small class="text-body-secondary fs-5 text">Já tem presente.</small>
+            <div class="d-flex flex-column flex-nowrap overflow-auto presente-escolhido">
+                <img src="{{ gift_choosed.image.url }}" class="card-img-top" alt="{{ gift_choosed.name }}">
+                <div class="container" style="padding: 10px;">
+                    <a href="{{ gift.link }}" target="_blank" class="btn btn-primary">Dar Presente</a>
+                    <button type="button" class="btn btn-danger">Cancelar Presente</button>
+                </div>
+            </div>
         {% endif %}
         <small class="text-body-secondary fs-5 txt-pix">Se preferir nos presentear com uma contribuição em dinheiro, disponibilizamos a opção de transferência via Pix. 
             Sua generosidade será uma grande ajuda para iniciarmos esta nova etapa com ainda mais alegria e gratidão.</small>

@@ -156,6 +156,52 @@
     border-color: #4571c4;
 }
 
+.presente-escolhido {
+    height: 80vh;
+    width:  100%;
+    margin-bottom: 5vh;
+}
+
+.presente-escolhido img {
+    height: 80%;
+    width: 100%;
+    object-fit: fill;
+}
+
+.presente-escolhido .container {
+    display: flex;
+    padding: 0!important;
+    justify-content: center;
+    width: 100%;
+}
+
+.presente-escolhido .container a {
+    display: flex;
+    background-color: #5b5b5b;
+    color: #f7f7f7;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-radius: 0;
+    width: 50%;
+    height: 15vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.presente-escolhido .container a:hover {
+    background-color: #5e94fa;
+}
+
+.presente-escolhido .container button {
+    width: 50%;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-radius: 0;
+}
+
+
 footer {
     height: 100px;
     background-color: #5b5b5b;
