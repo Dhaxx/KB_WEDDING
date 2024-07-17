@@ -142,28 +142,29 @@
     align-content: flex-end;
 }
 
-#presentes .comprar a {
+#presentes .comprar .btn {
     background-color: #6d92d8;
     border-color: #6d92d8;
     font-size: 1.2em;
     font-weight: 500;
     border-radius: 50px;
     width: 100%;
+    color: #f7f7f7;
 }
 
-#presentes .comprar a:hover {
+#presentes .comprar .btn:hover {
     background-color: #4571c4;
     border-color: #4571c4;
 }
 
 .presente-escolhido {
-    height: 80vh;
+    /* height: auto; */
     width:  100%;
     margin-bottom: 5vh;
 }
 
 .presente-escolhido img {
-    height: 80%;
+    height: auto;
     width: 100%;
     object-fit: fill;
 }
@@ -188,6 +189,7 @@
     align-items: center;
     justify-content: center;
     border: none;
+    border-radius: 0 0 0 20px;
 }
 
 .presente-escolhido .container a:hover {
@@ -199,6 +201,7 @@
     font-size: 1.2em;
     font-weight: 500;
     border-radius: 0;
+    border-radius: 0 0 20px 0;
 }
 
 

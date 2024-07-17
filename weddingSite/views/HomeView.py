@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from weddingSite.models import GroupGuest, Gift, GiftCart
+from django.http import JsonResponse
 
 def home_view(request):
     if 'group_guest_id' not in request.session:
@@ -28,15 +29,37 @@ def confirm_presence(request):
             request.session['show_modal'] = False  
     return HttpResponse(status=200)
 
-@login_required
-def add_gift(request):
+def add_gift(request, gift_id):
     if 'group_guest_id' not in request.session:
         return redirect('login')
     
-    gift = get_object_or_404(Gift, id=request.POST['gift_id'])
+    gift = get_object_or_404(Gift, id=gift_id)
     group_guest_id = request.session['group_guest_id']
     group_guest = GroupGuest.objects.get(id=group_guest_id)
 
-    GiftCart.objects.create(guestGroup=group_guest, gift=gift)
+    gift_cart, created = GiftCart.objects.get_or_create(guestGroup=group_guest)
+    gift_cart.gift = gift
+    gift_cart.save()
+
+    gift.status = True
+    gift.save()
+
+    return redirect('home')
+
+def remove_gift(request, gift_id):
+    if 'group_guest_id' not in request.session:
+        return redirect('login')
+    
+    gift = get_object_or_404(Gift, id=gift_id)
+    group_guest_id = request.session['group_guest_id']
+    group_guest = GroupGuest.objects.get(id=group_guest_id)
+
+    gift_cart = GiftCart.objects.get(guestGroup=group_guest, gift=gift)
+    if gift_cart:
+        gift.status = False
+        gift.save()
+        
+        gift_cart.gift = None
+        gift_cart.save()
 
     return redirect('home')

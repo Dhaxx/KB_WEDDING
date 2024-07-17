@@ -104,7 +104,7 @@
                         <p class="card-text">{{ gift.description|slice:":100" }}...</p>
                     </div>
                     <div class="container comprar" style="padding: 10px;">
-                        <a href="{{ gift.link }}" target="_blank" class="btn btn-primary">Dar Presente</a>
+                        <button type="button" class="btn" onclick="addToGiftCart({{ gift.id }})">Dar Presente</button>
                     </div>
                 </div>
                 {% endfor %}
@@ -113,8 +113,8 @@
             <div class="d-flex flex-column flex-nowrap overflow-auto presente-escolhido">
                 <img src="{{ gift_choosed.image.url }}" class="card-img-top" alt="{{ gift_choosed.name }}">
                 <div class="container" style="padding: 10px;">
-                    <a href="{{ gift.link }}" target="_blank" class="btn btn-primary">Dar Presente</a>
-                    <button type="button" class="btn btn-danger">Cancelar Presente</button>
+                    <a href="{{ gift_choosed.link }}" target="_blank" class="btn btn-primary">Ver na Loja</a>
+                    <button type="button" class="btn btn-danger" onclick="removeFromGiftCart({{ gift_choosed.id }})">Cancelar Presente</button>
                 </div>
             </div>
         {% endif %}
@@ -252,6 +252,51 @@
         document.execCommand("copy");
         document.body.removeChild(qrCodigo);
         alert("Link do QR Code copiado para a área de transferência!");
+    }
+
+    function addToGiftCart(giftId) {
+        fetch(`/add_to_gift_cart/${giftId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}' // Certifique-se de que o token CSRF está disponível no contexto do template
+            },
+            body: JSON.stringify({
+                gift_id: giftId
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                // Redirecione ou atualize a página após a adição bem-sucedida
+                window.location.reload();
+            } else {
+                alert('Erro ao adicionar presente. Tente novamente.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+    }
+
+    function removeFromGiftCart(giftId) {
+        fetch(`/remove_from_gift_cart/${giftId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}' // Certifique-se de que o token CSRF está disponível no contexto do template)
+            },
+            body: JSON.stringify({
+                gift_id: giftId
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                // Redirecione ou atualize a página após a remoção bem-sucedida
+                window.location.reload();
+            } else {
+                alert('Erro ao remover presente. Tente novamente.');
+            }
+        })
     }
 </script>
 {% endblock %}
