@@ -12,7 +12,7 @@ class Guest(models.Model):
 def generate_group_guest_token_and_hmac(sender, instance, **kwargs):
     if not instance.token:
         token = secrets.token_urlsafe(8)
-        token = token.replace('I', 'i').replace('l', 'L')
+        token = token.replace('I', 'i').replace('l', 'L').replace(' ', '_')
         instance.token = token
     key = bytes(SECRET_KEY, 'utf-8')
     instance.hmac_digest = hmac.new(key, str(instance.token).encode('utf-8'), digestmod=hashlib.sha256).hexdigest()
