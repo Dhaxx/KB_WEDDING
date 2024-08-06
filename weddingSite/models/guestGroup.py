@@ -16,3 +16,4 @@ class GroupGuest(models.Model):
 class GroupGuestAdmin(admin.ModelAdmin):
     list_display = ('name', 'status', 'token', 'type')
     list_display_links = ('name',)
+    list_filter = ('status', 'type')

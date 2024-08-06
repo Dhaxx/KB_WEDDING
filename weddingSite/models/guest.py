@@ -1,5 +1,20 @@
 from weddingSite.models import *
 
+class TypeFilter(admin.SimpleListFilter):
+    title = 'type'
+    parameter_name = 'type'
+
+    def lookups(self, request, model_admin):
+        return (
+            (0, 'Convidado'),
+            (1, 'Padrinho'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() is not None:
+            return queryset.filter(group__type=self.value())
+        return queryset
+
 class Guest(models.Model):
     name = models.CharField(max_length=100)
     table = models.ForeignKey(Table, on_delete=models.SET_NULL, blank=True, null=True, related_name='guests')
@@ -29,6 +44,7 @@ def create_group_guest_for_single_guest(sender, instance, created, **kwargs):
 class GuestAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'table', 'group', 'type')
     list_display_links = ('id', 'name', 'group',)
+    list_filter = ('group', TypeFilter)  # Adiciona o filtro personalizado aqui
 
     def type(self, obj):
         type_description = {0: 'Convidado', 1: 'Padrinho'}
