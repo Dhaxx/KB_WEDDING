@@ -13,3 +13,4 @@ class Gift(models.Model):
 class GiftAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'status',)
     list_display_links = ('id', 'name',)
+    list_filter = ('status',)
