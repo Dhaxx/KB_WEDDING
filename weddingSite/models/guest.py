@@ -1,4 +1,5 @@
 from weddingSite.models import *
+status_int = 0
 
 class TypeFilter(admin.SimpleListFilter):
     title = 'type'
@@ -14,6 +15,18 @@ class TypeFilter(admin.SimpleListFilter):
         if self.value() is not None:
             return queryset.filter(group__type=self.value())
         return queryset
+    
+class StatusFilter(admin.SimpleListFilter):
+    title = 'status'
+    parameter_name = 'status'
+
+    def lookups(self, request, model_admin):
+        return STATUS_CHOICES
+
+    def queryset(self, request, queryset):
+        if self.value() is not None:
+            return queryset.filter(group__status=self.value())
+        return queryset
 
 class Guest(models.Model):
     name = models.CharField(max_length=100)
@@ -22,6 +35,11 @@ class Guest(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def status(self):
+        status = [x[1] for x in STATUS_CHOICES if x[0] == self.group.status][0]
+        return status
     
 @receiver(pre_save, sender=GroupGuest)
 def generate_group_guest_token_and_hmac(sender, instance, **kwargs):
@@ -42,11 +60,11 @@ def create_group_guest_for_single_guest(sender, instance, created, **kwargs):
         gift_cart.save()
 
 class GuestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'table', 'group', 'type')
+    list_display = ('id', 'name', 'table', 'group', 'type', 'status')
     list_display_links = ('id', 'name', 'group',)
-    list_filter = ('group', TypeFilter)  # Adiciona o filtro personalizado aqui
+    list_filter = (TypeFilter, StatusFilter)  # Adiciona o filtro personalizado aqui
+    search_fields = ('name', 'group__name')
 
     def type(self, obj):
         type_description = {0: 'Convidado', 1: 'Padrinho'}
-        # Retorna a descrição baseada no valor de 'type' do grupo, se existir
         return type_description.get(obj.group.type, None) if obj.group else None
