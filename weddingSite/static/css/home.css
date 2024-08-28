@@ -49,12 +49,12 @@
 }
 
 .imagem-central {
-    background-image: url('../imgs/KB_main_img.JPEG');
+    background-image: url('../imgs/KB_main_img.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-x: 0;
-    background-position-y: -50vh;
-    height: 85vh;
+    background-position-x: -12vh;
+    background-position-y: 11vh;
+    height: 67vh;
 }
 
 #convite {
@@ -282,7 +282,8 @@ footer {
     }
 
     .imagem-central {
-        background-position-y: 0;
+        background-position-y: 15vh;
+        background-size: 80vh;
     }
 
     #container-pix {
